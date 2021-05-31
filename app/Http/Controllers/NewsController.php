@@ -25,8 +25,10 @@ class NewsController extends Controller
      */
     public function fetchTopHeadlines(Request $request)
     {
+        dump(123);
         if ($request->ajax()) {
             $data = $this->fetchAPIData($request->all());
+            dump($data);
             return Datatables::of($data)
                 ->addColumn('urlToImage', function ($row) {
                     if (!empty($row->urlToImage) && $row->urlToImage != "") {
@@ -59,6 +61,7 @@ class NewsController extends Controller
      */
     public function fetchAPIData($filters)
     {
+        dump($filters);
         if ($filters['sources'] != "" && $filters['searchKeyword'] != "") {
             $apiUrl = ApiDetails::api_url . ApiDetails::search_everything . "?q=" . $filters['searchKeyword'] . "&sources=" . urlencode($filters['sources']) . "&apiKey=" . ApiDetails::api_key . "";
         } else if ($filters['action'] == 'searchbykeyword' && $filters['searchKeyword'] != "") {
@@ -68,7 +71,7 @@ class NewsController extends Controller
         } else {
             $apiUrl = ApiDetails::api_url . ApiDetails::top_headlines . "?country=" . urlencode(ApiDetails::api_country) . "&apiKey=" . ApiDetails::api_key . "";
         }
-        dd($apiUrl);
+        dump($apiUrl);
         $data = file_get_contents($apiUrl);
         $data = json_decode($data);
         $data = $data->articles;
