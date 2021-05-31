@@ -4,6 +4,7 @@
     <title>News App</title>
     <meta name="description" content="The News Application to wacth the latest news">
     <meta name="author" content="SitePoint">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link href="{{asset("assets/fontawesome/fontawesome.css",env("APP_ASSETS"))}}" rel="stylesheet">
     <script src="{{asset('assets/jquery/jquery.min.js',env("APP_ASSETS"))}}" crossorigin="anonymous"></script>
     <link href="{{asset('assets/boostrap/css/bootstrap.min.css',env("APP_ASSETS"))}}" rel="stylesheet" crossorigin="anonymous">
