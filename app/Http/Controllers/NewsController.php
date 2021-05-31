@@ -59,7 +59,6 @@ class NewsController extends Controller
      */
     public function fetchAPIData($filters)
     {
-        dump($filters);
         if ($filters['sources'] != "" && $filters['searchKeyword'] != "") {
             $apiUrl = ApiDetails::api_url . ApiDetails::search_everything . "?q=" . $filters['searchKeyword'] . "&sources=" . urlencode($filters['sources']) . "&apiKey=" . ApiDetails::api_key . "";
         } else if ($filters['action'] == 'searchbykeyword' && $filters['searchKeyword'] != "") {
@@ -94,7 +93,6 @@ class NewsController extends Controller
         } else {
             $checkkeyword = FollowKeyword::where("keyword", "=", $request->followKeyword);
             $checkkeyword->delete();
-            dd($checkkeyword);
             return "deleted";
         }
 
