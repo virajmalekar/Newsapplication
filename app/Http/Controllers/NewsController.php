@@ -68,6 +68,7 @@ class NewsController extends Controller
         } else {
             $apiUrl = ApiDetails::api_url . ApiDetails::top_headlines . "?country=" . urlencode(ApiDetails::api_country) . "&apiKey=" . ApiDetails::api_key . "";
         }
+        dd($apiUrl);
         $data = file_get_contents($apiUrl);
         $data = json_decode($data);
         $data = $data->articles;
