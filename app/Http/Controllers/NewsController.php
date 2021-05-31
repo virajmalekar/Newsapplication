@@ -25,10 +25,8 @@ class NewsController extends Controller
      */
     public function fetchTopHeadlines(Request $request)
     {
-        dump(123);
-        if ($request->ajax()) {
+//        if ($request->ajax()) {
             $data = $this->fetchAPIData($request->all());
-            dump($data);
             return Datatables::of($data)
                 ->addColumn('urlToImage', function ($row) {
                     if (!empty($row->urlToImage) && $row->urlToImage != "") {
@@ -51,7 +49,7 @@ class NewsController extends Controller
                 ->rawColumns(['urlToImage', 'title', 'publishedAt'])
                 ->make(true);
         }
-    }
+//    }
 
     /**
      * Fetches the data from the API of NewsAPI.org
@@ -71,7 +69,6 @@ class NewsController extends Controller
         } else {
             $apiUrl = ApiDetails::api_url . ApiDetails::top_headlines . "?country=" . urlencode(ApiDetails::api_country) . "&apiKey=" . ApiDetails::api_key . "";
         }
-        dump($apiUrl);
         $data = file_get_contents($apiUrl);
         $data = json_decode($data);
         $data = $data->articles;
